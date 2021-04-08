@@ -170,6 +170,8 @@ class DiscretePanelCtrl extends CanvasPanelCtrl {
 
   _colorsPaleteCash: any = null;
   _renderDimensions: any = {};
+  _selectedMetric: any = {};
+  _selectedLegendItem: any = {};
   _selectionMatrix: string[][] = [];
 
   fieldNamer = (field: Field, frame?: DataFrame, allFrames?: DataFrame[]): string => {
