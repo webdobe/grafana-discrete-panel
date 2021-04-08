@@ -792,7 +792,7 @@ class DiscretePanelCtrl extends CanvasPanelCtrl {
       all: () => {
         return true;
       },
-      crosshairHover: function(i, j) {
+      crosshairHover: (i, j) => {
         if (j + 1 === this.data[i].changes.length) {
           return this.data[i].changes[j].start <= this.mouse.position.ts;
         }
@@ -801,17 +801,17 @@ class DiscretePanelCtrl extends CanvasPanelCtrl {
           this.mouse.position.ts < this.data[i].changes[j + 1].start
         );
       },
-      mouseX: function(i, j) {
+      mouseX: (i, j) => {
         const row = this._renderDimensions.matrix[i];
         if (j + 1 === row.positions.length) {
           return row.positions[j] <= this.mouse.position.x;
         }
         return row.positions[j] <= this.mouse.position.x && this.mouse.position.x < row.positions[j + 1];
       },
-      metric: function(i) {
+      metric: (i) => {
         return this.data[i] === this._selectedMetric;
       },
-      legendItem: function(i, j) {
+      legendItem: (i, j) => {
         if (this.data[i] !== this._selectedMetric) {
           return false;
         }

@@ -161,8 +161,7 @@ export class CanvasPanelCtrl extends MetricsPanelCtrl {
 
     this.context = this.canvas.getContext('2d');
     this.canvas.addEventListener(
-      'mousemove',
-        (evt) => {
+      'mousemove', (evt) => {
         if (!this.range) {
           return; // skip events before we have loaded
         }
@@ -189,8 +188,7 @@ export class CanvasPanelCtrl extends MetricsPanelCtrl {
     );
 
     this.canvas.addEventListener(
-      'mouseout',
-        (evt) => {
+      'mouseout', (evt) => {
         if (this.mouse.down == null) {
           this.mouse.position = null;
           this.onRender();
@@ -202,16 +200,14 @@ export class CanvasPanelCtrl extends MetricsPanelCtrl {
     );
 
     this.canvas.addEventListener(
-      'mousedown',
-        (evt) => {
+      'mousedown', (evt) => {
         this.mouse.down = this.getMousePosition(evt);
       },
       false
     );
 
     this.canvas.addEventListener(
-      'mouseenter',
-        (evt) => {
+      'mouseenter', (evt) => {
         if (this.mouse.down && !evt.buttons) {
           this.mouse.position = null;
           this.mouse.down = null;
@@ -225,8 +221,7 @@ export class CanvasPanelCtrl extends MetricsPanelCtrl {
     );
 
     this.canvas.addEventListener(
-      'mouseup',
-        (evt) => {
+      'mouseup', (evt) => {
         this.$tooltip.detach();
         const up = this.getMousePosition(evt);
         if (this.mouse.down != null) {
@@ -249,8 +244,7 @@ export class CanvasPanelCtrl extends MetricsPanelCtrl {
     );
 
     this.canvas.addEventListener(
-      'dblclick',
-        (evt) => {
+      'dblclick', (evt) => {
         this.mouse.position = null;
         this.mouse.down = null;
         this.onRender();
@@ -264,8 +258,7 @@ export class CanvasPanelCtrl extends MetricsPanelCtrl {
 
     // global events
     appEvents.on(
-      'graph-hover',
-        (event) => {
+      'graph-hover', (event) => {
         // ignore other graph hover events if shared tooltip is disabled
         const isThis = event.panel.id === this.panel.id;
         if (!this.dashboard.sharedTooltipModeEnabled() && !isThis) {
