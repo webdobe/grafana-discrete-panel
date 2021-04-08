@@ -1,6 +1,6 @@
 import { CanvasPanelCtrl } from './canvas-metric';
 import { DistinctPoints, LegendValue } from './distinct-points';
-import { isArray } from 'lodash';
+import _, { isArray } from 'lodash';
 
 import {
   DataQueryResponseData,
@@ -15,7 +15,6 @@ import {
   FieldType,
 } from '@grafana/data';
 
-import _ from 'lodash';
 import $ from 'jquery';
 import kbn from 'grafana/app/core/utils/kbn';
 
@@ -358,10 +357,10 @@ class DiscretePanelCtrl extends CanvasPanelCtrl {
     $(this.canvas).css('cursor', 'pointer');
 
     const data: DistinctPoints[] = [];
-    frames.forEach(frame => {
+    frames.forEach((frame) => {
       const time = getTimeField(frame).timeField;
       if (time) {
-        frame.fields.forEach(field => {
+        frame.fields.forEach((field) => {
           if (field !== time) {
             const res = new DistinctPoints(this.fieldNamer(field, frame, frames));
             for (let i = 0; i < time.values.length; i++) {
@@ -384,7 +383,7 @@ class DiscretePanelCtrl extends CanvasPanelCtrl {
         range: this.range,
       })
       .then(
-        result => {
+        (result) => {
           this.loading = false;
           if (result.annotations && result.annotations.length > 0) {
             this.annotations = result.annotations;
@@ -436,9 +435,9 @@ class DiscretePanelCtrl extends CanvasPanelCtrl {
 
   addColorMap(what) {
     if (what === 'curent') {
-      _.forEach(this.data, metric => {
+      _.forEach(this.data, (metric) => {
         if (metric.legendInfo) {
-          _.forEach(metric.legendInfo, info => {
+          _.forEach(metric.legendInfo, (info) => {
             if (!_.has(this.colorMap, info.val)) {
               const v = { text: info.val, color: this.getColor(info.val) };
               this.panel.colorMaps.push(v);
@@ -651,7 +650,7 @@ class DiscretePanelCtrl extends CanvasPanelCtrl {
             const max = _.isUndefined(this.range.to) ? null : this.range.to.valueOf();
             const width = this._renderDimensions.width;
 
-            const anno = _.find(this.annotations, a => {
+            const anno = _.find(this.annotations, (a) => {
               if (a.isRegion) {
                 return evt.pos.x > a.time && evt.pos.x < a.timeEnd;
               }
@@ -752,7 +751,7 @@ class DiscretePanelCtrl extends CanvasPanelCtrl {
     const elapsed = this.range.to - this.range.from;
 
     this._renderDimensions.matrix = [];
-    _.forEach(this.data, metric => {
+    _.forEach(this.data, (metric) => {
       const positions: any[] = [];
 
       if (this.isTimeline) {
@@ -1149,7 +1148,7 @@ class DiscretePanelCtrl extends CanvasPanelCtrl {
     const max = _.isUndefined(this.range.to) ? null : this.range.to.valueOf();
     //let xPos = headerColumnIndent;
 
-    _.forEach(this.annotations, anno => {
+    _.forEach(this.annotations, (anno) => {
       ctx.setLineDash([3, 3]);
 
       let isAlert = false;
